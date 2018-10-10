@@ -2,6 +2,7 @@
 
 //global vars
 var itemImageLeft = document.getElementById('left');
+var itemLeftText = document.getElementById('item-1-text');
 var itemImageMiddle = document.getElementById('middle');
 var itemImageRight = document.getElementById('right');
 var imageSection = document.getElementById('click-me');
@@ -26,14 +27,14 @@ Item.prototype.renderItem = function (){
   itemImageLeft.src = this.src;
 };
 
-//event listeners and handlers
+// event listeners and handlers
 var leftItemClickHandler = function (eventObject) {
   do {
     var randomNumber = Math.floor(Math.random() * allItems.length);
   } while(randomNumber === itemImageLeftArrayIndex);
 
-  allItems[itemImageLeftArrayIndex].likes++;
-  allItems[itemImageLeftArrayIndex].appeared++;
+  allItems[itemImageLeftArrayIndex].timesLiked++;
+  allItems[itemImageLeftArrayIndex].timesShown++;
 
   itemImageLeftArrayIndex = randomNumber;
   eventObject.target.src = allItems[randomNumber].src;
@@ -46,8 +47,8 @@ var middleItemClickHandler = function (eventObject) {
     var randomNumber = Math.floor(Math.random() * allItems.length);
   } while(randomNumber === itemImageMiddleArrayIndex);
 
-  allItems[itemImageMiddleArrayIndex].likes++;
-  allItems[itemImageMiddleArrayIndex].appeared++;
+  allItems[itemImageMiddleArrayIndex].timesLiked++;
+  allItems[itemImageMiddleArrayIndex].timesShown++;
 
   itemImageMiddleArrayIndex = randomNumber;
   eventObject.target.src = allItems[randomNumber].src;
@@ -60,8 +61,8 @@ var rightItemClickHandler = function (eventObject) {
     var randomNumber = Math.floor(Math.random() * allItems.length);
   } while(randomNumber === itemImageRightArrayIndex);
 
-  allItems[itemImageRightArrayIndex].likes++;
-  allItems[itemImageRightArrayIndex].appeared++;
+  allItems[itemImageRightArrayIndex].timesLiked++;
+  allItems[itemImageRightArrayIndex].timesShown++;
 
   itemImageRightArrayIndex = randomNumber;
   eventObject.target.src = allItems[randomNumber].src;
