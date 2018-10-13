@@ -2,6 +2,7 @@
 
 //global vars
 var imageSection = document.getElementById('click-me');
+var ctx = document.getElementById('myChart').getContext('2d');
 
 var itemImageLeft = document.getElementById('left');
 var itemImageMiddle = document.getElementById('middle');
@@ -69,12 +70,11 @@ var ItemClickHandler = function (event) {
 
     clickCounter++;
     if (clickCounter === 25) {
-      //render chart
+      renderChart();
 
       imageSection.removeEventListener('click', ItemClickHandler);
     }
   }
-
 };
 
 imageSection.addEventListener('click', ItemClickHandler);
@@ -95,7 +95,7 @@ new Item('dragon meat', './img/dragon.jpg');
 new Item('pen', './img/pen.jpg');
 new Item('pet-sweep', './img/pet-sweep.jpg');
 new Item('scissors', './img/scissors.jpg');
-new Item('shark', './img/shark.jpg');
+new Item('Sharky Sleepy', './img/shark.jpg');
 new Item('sweep', './img/sweep.png');
 new Item('tauntaun', './img/tauntaun.jpg');
 new Item('unicorn', './img/unicorn.jpg');
@@ -107,10 +107,62 @@ new Item('wine glass', './img/wine-glass.jpg');
 //=====================================
 //chart
 //=====================================
+var itemNames = [];
+var itemLikes = [];
+
+var renderChart = function () {
+  for(var i in allItems){
+    itemNames.push(allItems[i].name);
+    itemLikes.push(allItems[i].timesLiked);
+  }
+};
 
 
+var chartData = {
+  labels: itemNames,
+  datasets: [{
+    label: '# of Likes',
+    data: itemLikes,
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(245, 150, 40, 0.2)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1
+  }]
+};
 
 
+var chartOptions = {
+  scales: {
+    yAxes: [{
+      ticks: {
+        beginAtZero: true
+      }
+    }]
+  }
+};
+
+
+var chart ={
+  type: 'bar',
+  data: chartData,
+  options: chartOptions,
+};
+
+var myChart = new Chart(ctx, chart);
 
 
 
