@@ -68,12 +68,15 @@ var ItemClickHandler = function (event) {
     itemMiddleText.textContent = allItems[randomNumberMiddle].name;
     itemRightText.textContent = allItems[randomNumberRight].name;
 
+    var myChart = new Chart(ctx, chart);
+
     clickCounter++;
     if (clickCounter === 25) {
+      imageSection.removeEventListener('click', ItemClickHandler);
       renderChart();
 
-      imageSection.removeEventListener('click', ItemClickHandler);
     }
+
   }
 };
 
@@ -103,8 +106,6 @@ new Item('usb', './img/usb.gif');
 new Item('water can', './img/water-can.jpg');
 new Item('wine glass', './img/wine-glass.jpg');
 //========================================================================
-
-//=====================================
 //chart
 //=====================================
 var itemNames = [];
@@ -116,12 +117,13 @@ var renderChart = function () {
     itemLikes.push(allItems[i].timesLiked);
   }
 };
-
+console.log(itemLikes, 'these were liked');
+console.log(itemNames, 'the names');
 
 var chartData = {
   labels: itemNames,
   datasets: [{
-    label: '# of Likes',
+    label: 'Number of Likes',
     data: itemLikes,
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
@@ -130,10 +132,39 @@ var chartData = {
       'rgba(75, 192, 192, 0.2)',
       'rgba(153, 102, 255, 0.2)',
       'rgba(255, 159, 64, 0.2)',
-      'rgba(245, 150, 40, 0.2)'
+      'rgba(245, 150, 40, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)'
     ],
     borderColor: [
       'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)',
       'rgba(54, 162, 235, 1)',
       'rgba(255, 206, 86, 1)',
       'rgba(75, 192, 192, 1)',
@@ -162,7 +193,7 @@ var chart ={
   options: chartOptions,
 };
 
-var myChart = new Chart(ctx, chart);
+
 
 
 
