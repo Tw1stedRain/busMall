@@ -3,3 +3,10 @@ img {
   max-width: 100%;
   margin: 0 auto;
 }
+section{
+  text-align: center;
+}
+
+section div{
+  display: inline-block;
+}
