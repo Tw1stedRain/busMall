@@ -19,6 +19,9 @@ var currentRightImageArrayIndex = 19;
 var allItems = [];
 var clickCounter = 0;
 
+var itemNames = [];
+var itemLikes = [];
+
 //item constructor
 var Item = function (name, src) {
   this.name = name;
@@ -68,10 +71,91 @@ var ItemClickHandler = function (event) {
     itemMiddleText.textContent = allItems[randomNumberMiddle].name;
     itemRightText.textContent = allItems[randomNumberRight].name;
 
-    var myChart = new Chart(ctx, chart);
 
     clickCounter++;
     if (clickCounter === 25) {
+      var chartData = {
+        labels: itemNames,
+        datasets: [{
+          label: 'Number of Likes',
+          data: itemLikes,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(245, 150, 40, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+
+      var chartOptions = {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      };
+
+
+      var chart ={
+        type: 'bar',
+        data: chartData,
+        options: chartOptions,
+      };
+
+      var renderChart = function () {
+        for(var i in allItems){
+          itemNames.push(allItems[i].name);
+          itemLikes.push(allItems[i].timesLiked);
+        }
+        console.log('VALUES', itemNames);
+        var myChart = new Chart(ctx, chart);
+      };
+
       imageSection.removeEventListener('click', ItemClickHandler);
       renderChart();
 
@@ -108,90 +192,13 @@ new Item('wine glass', './img/wine-glass.jpg');
 //========================================================================
 //chart
 //=====================================
-var itemNames = [];
-var itemLikes = [];
 
-var renderChart = function () {
-  for(var i in allItems){
-    itemNames.push(allItems[i].name);
-    itemLikes.push(allItems[i].timesLiked);
-  }
-};
+
+
 console.log(itemLikes, 'these were liked');
 console.log(itemNames, 'the names');
 
-var chartData = {
-  labels: itemNames,
-  datasets: [{
-    label: 'Number of Likes',
-    data: itemLikes,
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(153, 102, 255, 0.2)',
-      'rgba(255, 159, 64, 0.2)',
-      'rgba(245, 150, 40, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)',
-      'rgba(75, 192, 192, 0.2)',
-      'rgba(54, 162, 235, 0.2)',
-      'rgba(255, 206, 86, 0.2)'
-    ],
-    borderColor: [
-      'rgba(255,99,132,1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)',
-      'rgba(54, 162, 235, 1)',
-      'rgba(255, 206, 86, 1)',
-      'rgba(75, 192, 192, 1)',
-      'rgba(153, 102, 255, 1)',
-      'rgba(255, 159, 64, 1)'
-    ],
-    borderWidth: 1
-  }]
-};
 
-
-var chartOptions = {
-  scales: {
-    yAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
-  }
-};
-
-
-var chart ={
-  type: 'bar',
-  data: chartData,
-  options: chartOptions,
-};
 
 
 
