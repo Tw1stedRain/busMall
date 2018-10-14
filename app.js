@@ -19,6 +19,9 @@ var currentRightImageArrayIndex = 19;
 var allItems = [];
 var clickCounter = 0;
 
+var itemNames = [];
+var itemLikes = [];
+
 //item constructor
 var Item = function (name, src) {
   this.name = name;
@@ -143,6 +146,7 @@ var ItemClickHandler = function (event) {
         data: chartData,
         options: chartOptions,
       };
+
       var renderChart = function () {
         for(var i in allItems){
           itemNames.push(allItems[i].name);
@@ -188,8 +192,7 @@ new Item('wine glass', './img/wine-glass.jpg');
 //========================================================================
 //chart
 //=====================================
-var itemNames = [];
-var itemLikes = [];
+
 
 
 console.log(itemLikes, 'these were liked');
