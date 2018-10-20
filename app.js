@@ -202,10 +202,3 @@ var ItemClickHandler = function (event) {
 };
 
 imageSection.addEventListener('click', ItemClickHandler);
-
-//========================================================================
-//all items (20 items)
-//========================================================================
-
-
-
